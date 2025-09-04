@@ -43,8 +43,8 @@ export default function FinalCta() {
           {/* Main CTA */}
           <div className="mb-16">
             <h2 className="h1 mb-6 text-slate-100">
-              ¿Listo para{' '}
-              <span className="text-brand">transformar tu comercio exterior</span>?
+              Da tu salto cuántico hacia la{' '}
+              <span className="text-brand">ventaja competitiva</span>
             </h2>
             <p className="text-xl text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed">
               Únete a más de 150 empresas que ya están tomando decisiones 
@@ -56,7 +56,7 @@ export default function FinalCta() {
                 href="/dashboard" 
                 className="btn btn-primary px-8 py-4 text-lg group"
               >
-                Ver Demo en Vivo
+                Agenda tu demo ahora
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-200" />
               </a>
               <a 

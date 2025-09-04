@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { Menu, X, Home, BarChart3, FileText, Mail, Phone } from 'lucide-react';
-import { cn, utilityClasses, a11y, layout } from '@/lib/utils';
+import { cn, a11y, layout } from '@/lib/utils';
 
 interface ShellLayoutProps {
   children: React.ReactNode;
@@ -19,7 +20,7 @@ export default function ShellLayout({ children, className }: ShellLayoutProps) {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Skip Link for Accessibility */}
       <a href="#main-content" className={a11y.skipLink}>
         Saltar al contenido principal
@@ -33,7 +34,7 @@ export default function ShellLayout({ children, className }: ShellLayoutProps) {
         <div className={layout.container}>
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <a 
+            <Link 
               href="/" 
               className="flex items-center gap-3 group"
               aria-label="QSP SpA - Ir al inicio"
@@ -42,21 +43,21 @@ export default function ShellLayout({ children, className }: ShellLayoutProps) {
                 <span className="text-primary-foreground font-bold text-sm">Q</span>
               </div>
               <span className="text-xl font-bold text-foreground">QSP SpA</span>
-            </a>
+            </Link>
 
             {/* Desktop Navigation */}
             <nav aria-label="Navegación principal" className="hidden md:flex items-center gap-6">
               {navigation.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <a
+                  <Link
                     key={item.name}
                     href={item.href}
                     className="flex items-center gap-2 text-sm text-foreground hover:text-primary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-md px-2 py-1"
                   >
                     <Icon size={16} />
                     {item.name}
-                  </a>
+                  </Link>
                 );
               })}
             </nav>
@@ -84,7 +85,7 @@ export default function ShellLayout({ children, className }: ShellLayoutProps) {
                 {navigation.map((item) => {
                   const Icon = item.icon;
                   return (
-                    <a
+                    <Link
                       key={item.name}
                       href={item.href}
                       className="flex items-center gap-3 text-foreground hover:text-primary hover:bg-card/50 transition-colors duration-200 rounded-md px-3 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
@@ -92,7 +93,7 @@ export default function ShellLayout({ children, className }: ShellLayoutProps) {
                     >
                       <Icon size={18} />
                       {item.name}
-                    </a>
+                    </Link>
                   );
                 })}
               </div>
@@ -105,7 +106,7 @@ export default function ShellLayout({ children, className }: ShellLayoutProps) {
       <main 
         id="main-content" 
         role="main" 
-        className={cn("flex-1", className)}
+        className={cn("", className)}
       >
         {children}
       </main>
@@ -139,12 +140,12 @@ export default function ShellLayout({ children, className }: ShellLayoutProps) {
                   <ul className="space-y-2">
                     {navigation.map((item) => (
                       <li key={item.name}>
-                        <a 
+                        <Link 
                           href={item.href}
                           className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
                         >
                           {item.name}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>

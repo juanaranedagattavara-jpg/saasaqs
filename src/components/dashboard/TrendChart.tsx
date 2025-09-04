@@ -2,19 +2,44 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
+import { Skeleton } from '@/components/ui/skeleton';
 import { TrendData } from '@/types';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from 'recharts';
 
 interface TrendChartProps {
   data: TrendData[];
+  isLoading?: boolean;
 }
 
-export default function TrendChart({ data }: TrendChartProps) {
+export default function TrendChart({ data, isLoading = false }: TrendChartProps) {
+  if (isLoading) {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle>Tendencia Comercial</CardTitle>
+          <p className="text-sm text-muted-foreground">
+            Evolución mensual de exportaciones, importaciones y saldo comercial
+          </p>
+        </CardHeader>
+        <CardContent>
+          <div className="h-[300px] w-full space-y-4">
+            <Skeleton className="h-4 w-32" />
+            <Skeleton className="h-4 w-24" />
+            <Skeleton className="h-4 w-40" />
+            <div className="flex-1">
+              <Skeleton className="h-full w-full rounded-lg" />
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
+
   return (
-    <Card>
+    <Card className="group">
       <CardHeader>
-        <CardTitle>Tendencia Comercial</CardTitle>
-        <p className="text-sm text-muted-foreground">
+        <CardTitle className="group-hover:text-primary transition-colors duration-200">Tendencia Comercial</CardTitle>
+        <p className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-200">
           Evolución mensual de exportaciones, importaciones y saldo comercial
         </p>
       </CardHeader>

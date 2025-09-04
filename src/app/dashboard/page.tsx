@@ -32,8 +32,28 @@ export default function DashboardPage() {
   if (loading) {
     return (
       <ShellLayout>
-        <div className="flex items-center justify-center h-64">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+        <div className="space-y-6">
+          {/* Header Skeleton */}
+          <div>
+            <div className="h-8 w-48 bg-muted/50 rounded animate-pulse mb-2"></div>
+            <div className="h-4 w-64 bg-muted/50 rounded animate-pulse"></div>
+          </div>
+
+          {/* KPIs Grid Skeleton */}
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <KpiCard key={i} data={data?.kpis[0] || { id: '1', title: '', value: '', change: 0, changeType: 'increase', period: '', icon: 'TrendingUp' }} isLoading={true} />
+            ))}
+          </div>
+
+          {/* Charts and Tables Skeleton */}
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            <div className="lg:col-span-2">
+              <TrendChart data={[]} isLoading={true} />
+            </div>
+            <TopTable title="Top Productos Exportados" data={[]} type="products" isLoading={true} />
+            <TopTable title="Top Países Destino" data={[]} type="countries" isLoading={true} />
+          </div>
         </div>
       </ShellLayout>
     );

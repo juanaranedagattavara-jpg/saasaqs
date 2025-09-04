@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { Report, ReportFormData } from '@/types';
@@ -16,6 +17,7 @@ import { FileText, Download, Clock, CheckCircle, XCircle, Plus } from 'lucide-re
 export default function ReportesPage() {
   const [reports] = useState<Report[]>(mockReports);
   const [showForm, setShowForm] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState<ReportFormData>({
     title: '',
     type: 'exportaciones',
@@ -49,8 +51,13 @@ export default function ReportesPage() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simular delay de API
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
     // Aquí se enviaría el formulario a la API
     console.log('Creating report:', formData);
     setShowForm(false);
@@ -60,6 +67,7 @@ export default function ReportesPage() {
       period: '',
       filters: {}
     });
+    setIsSubmitting(false);
   };
 
   return (
@@ -140,10 +148,20 @@ export default function ReportesPage() {
                     type="button"
                     variant="outline"
                     onClick={() => setShowForm(false)}
+                    disabled={isSubmitting}
                   >
                     Cancelar
                   </Button>
-                  <Button type="submit">Crear Reporte</Button>
+                  <Button type="submit" disabled={isSubmitting}>
+                    {isSubmitting ? (
+                      <>
+                        <LoadingSpinner size="sm" className="mr-2" />
+                        Creando...
+                      </>
+                    ) : (
+                      'Crear Reporte'
+                    )}
+                  </Button>
                 </div>
               </form>
             </CardContent>
@@ -153,28 +171,28 @@ export default function ReportesPage() {
         {/* Reports List */}
         <div className="grid grid-cols-1 gap-4">
           {reports.map((report) => (
-            <Card key={report.id}>
+            <Card key={report.id} className="group/report hover:shadow-lg hover:shadow-primary/5 transition-all duration-200">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-4">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                      <FileText className="h-5 w-5 text-primary" />
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 group-hover/report:bg-primary/20 group-hover/report:scale-110 transition-all duration-200">
+                      <FileText className="h-5 w-5 text-primary group-hover/report:text-primary/80" />
                     </div>
                     <div>
-                      <h3 className="font-medium text-foreground">{report.title}</h3>
-                      <p className="text-sm text-muted-foreground">
+                      <h3 className="font-medium text-foreground group-hover/report:text-primary transition-colors duration-200">{report.title}</h3>
+                      <p className="text-sm text-muted-foreground group-hover/report:text-foreground transition-colors duration-200">
                         {report.period} • {formatDate(report.createdAt)}
                       </p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <Badge className={getStatusColor(report.status)}>
+                    <Badge className={`${getStatusColor(report.status)} group-hover/report:scale-105 transition-all duration-200`}>
                       {getStatusIcon(report.status)}
                       <span className="ml-1 capitalize">{report.status}</span>
                     </Badge>
                     {report.status === 'completed' && report.downloadUrl && (
-                      <Button variant="outline" size="sm">
-                        <Download className="h-4 w-4 mr-2" />
+                      <Button variant="outline" size="sm" className="group-hover/report:bg-primary group-hover/report:text-primary-foreground transition-all duration-200">
+                        <Download className="h-4 w-4 mr-2 group-hover/report:animate-bounce" />
                         Descargar
                       </Button>
                     )}

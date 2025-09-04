@@ -5,7 +5,9 @@ export { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 export { ChartContainer, ChartTooltip, ChartTooltipContent } from './chart';
 export { Input } from './input';
 export { Label } from './label';
+export { LoadingSpinner } from './loading-spinner';
 export { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './select';
+export { Skeleton } from './skeleton';
 export { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './table';
 export { Textarea } from './textarea';
 
