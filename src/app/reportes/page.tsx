@@ -74,15 +74,19 @@ export default function ReportesPage() {
     <ShellLayout>
       <div className="space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <header className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-foreground">Reportes</h1>
             <p className="text-muted-foreground">
               Genera y gestiona reportes de comercio exterior
             </p>
           </div>
-          <Button onClick={() => setShowForm(true)} className="flex items-center space-x-2">
-            <Plus className="h-4 w-4" />
+          <Button 
+            onClick={() => setShowForm(true)} 
+            className="flex items-center space-x-2"
+            aria-label="Crear nuevo reporte"
+          >
+            <Plus className="h-4 w-4" aria-hidden="true" />
             <span>Nuevo Reporte</span>
           </Button>
         </div>

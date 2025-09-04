@@ -1,5 +1,6 @@
 'use client';
 
+import { memo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -25,7 +26,7 @@ const iconMap: Record<string, LucideIcon> = {
   Globe,
 };
 
-export default function KpiCard({ data, isLoading = false }: KpiCardProps) {
+const KpiCard = memo(function KpiCard({ data, isLoading = false }: KpiCardProps) {
   const Icon = iconMap[data.icon] || TrendingUp;
   
   const getChangeIcon = () => {
@@ -58,15 +59,15 @@ export default function KpiCard({ data, isLoading = false }: KpiCardProps) {
   }
 
   return (
-    <Card className="relative overflow-hidden group">
+    <Card className="relative overflow-hidden group" role="region" aria-labelledby={`kpi-${data.id}-title`}>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-200">
+        <CardTitle id={`kpi-${data.id}-title`} className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-200">
           {data.title}
         </CardTitle>
-        <Icon className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors duration-200" />
+        <Icon className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors duration-200" aria-hidden="true" />
       </CardHeader>
       <CardContent>
-        <div className="text-2xl font-bold text-foreground mb-1 group-hover:text-primary transition-colors duration-200">
+        <div className="text-2xl font-bold text-foreground mb-1 group-hover:text-primary transition-colors duration-200" aria-label={`Valor: ${data.value}`}>
           {data.value}
         </div>
         <div className="flex items-center space-x-2">
@@ -80,6 +81,7 @@ export default function KpiCard({ data, isLoading = false }: KpiCardProps) {
                 ? "bg-red-500/10 text-red-400 border-red-500/20 group-hover:bg-red-500/20"
                 : "bg-muted text-muted-foreground"
             )}
+            aria-label={`Cambio: ${data.changeType === 'increase' ? '+' : ''}${data.change}%`}
           >
             {getChangeIcon()}
             <span className="ml-1">
@@ -93,4 +95,6 @@ export default function KpiCard({ data, isLoading = false }: KpiCardProps) {
       </CardContent>
     </Card>
   );
-}
+});
+
+export default KpiCard;

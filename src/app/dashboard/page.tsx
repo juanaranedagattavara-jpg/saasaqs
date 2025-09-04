@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import ShellLayout from '@/components/layout/ShellLayout';
 import KpiCard from '@/components/dashboard/KpiCard';
-import TrendChart from '@/components/dashboard/TrendChart';
+import TrendChartDynamic from '@/components/dashboard/TrendChartDynamic';
 import TopTable from '@/components/dashboard/TopTable';
 import { DashboardData } from '@/types';
 import { mockDashboardData } from '@/lib/data';
@@ -49,7 +49,7 @@ export default function DashboardPage() {
           {/* Charts and Tables Skeleton */}
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             <div className="lg:col-span-2">
-              <TrendChart data={[]} isLoading={true} />
+              <TrendChartDynamic data={[]} isLoading={true} />
             </div>
             <TopTable title="Top Productos Exportados" data={[]} type="products" isLoading={true} />
             <TopTable title="Top Países Destino" data={[]} type="countries" isLoading={true} />
@@ -92,7 +92,7 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           {/* Trend Chart */}
           <div className="lg:col-span-2">
-            <TrendChart data={data.trendData} />
+            <TrendChartDynamic data={data.trendData} />
           </div>
 
           {/* Top Products */}

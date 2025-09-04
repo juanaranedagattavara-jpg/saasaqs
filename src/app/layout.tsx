@@ -58,6 +58,8 @@ export default function RootLayout({
       <head>
         <meta name="theme-color" content="#0b0f14" />
         <meta name="msapplication-TileColor" content="#0b0f14" />
+        <link rel="prefetch" href="/dashboard" />
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -66,7 +68,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.variable} font-sans antialiased bg-background text-foreground min-h-screen`}>
-        <main id="content" role="main">
+        <main id="content" role="main" className="relative">
           {children}
         </main>
       </body>

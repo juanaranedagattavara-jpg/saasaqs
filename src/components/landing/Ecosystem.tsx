@@ -62,35 +62,38 @@ export default function Ecosystem() {
     <section id="ecosistema" className="py-20">
       <div className="container">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="h2 mb-6 text-slate-100">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-foreground leading-tight">
             Un ecosistema de apps para cada{' '}
-            <span className="text-brand">desafío competitivo</span>
+            <span className="text-primary bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              desafío competitivo
+            </span>
           </h2>
-          <p className="text-lg text-slate-400 leading-relaxed">
-            Cada módulo está diseñado para resolver desafíos específicos de comercio exterior.
+          <p className="text-lg text-muted-foreground leading-relaxed font-light max-w-2xl mx-auto">
+            Cada módulo está diseñado para resolver desafíos específicos de comercio exterior, 
+            creando un ecosistema completo de inteligencia de mercado.
           </p>
         </div>
 
         {/* App Carousel */}
-        <div className="relative max-w-6xl mx-auto">
+        <div className="relative max-w-7xl mx-auto">
           {/* Navigation */}
-          <div className="flex justify-between items-center mb-8">
+          <div className="flex justify-between items-center mb-12">
             <button
               onClick={prevApp}
-              className="p-3 bg-slate-800/50 hover:bg-slate-700/50 rounded-full transition-colors duration-200"
+              className="p-4 bg-card/50 hover:bg-card/70 rounded-full transition-all duration-300 border border-border/30 hover:border-primary/30 group"
             >
-              <ChevronLeft size={24} className="text-slate-400" />
+              <ChevronLeft size={28} className="text-muted-foreground group-hover:text-primary transition-colors duration-300" />
             </button>
             
-            <div className="flex gap-2">
+            <div className="flex gap-3">
               {applications.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentApp(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-200 ${
+                  className={`w-4 h-4 rounded-full transition-all duration-300 ${
                     index === currentApp 
-                      ? 'bg-brand scale-125' 
-                      : 'bg-slate-600 hover:bg-slate-500'
+                      ? 'bg-primary scale-125 shadow-lg shadow-primary/25' 
+                      : 'bg-muted hover:bg-muted-foreground/50'
                   }`}
                 />
               ))}
@@ -98,81 +101,81 @@ export default function Ecosystem() {
 
             <button
               onClick={nextApp}
-              className="p-3 bg-slate-800/50 hover:bg-slate-700/50 rounded-full transition-colors duration-200"
+              className="p-4 bg-card/50 hover:bg-card/70 rounded-full transition-all duration-300 border border-border/30 hover:border-primary/30 group"
             >
-              <ChevronRight size={24} className="text-slate-400" />
+              <ChevronRight size={28} className="text-muted-foreground group-hover:text-primary transition-colors duration-300" />
             </button>
           </div>
 
           {/* App Display */}
-          <div className="card p-8 md:p-12 relative overflow-hidden">
+          <div className="card p-12 md:p-16 relative overflow-hidden border border-border/50 hover:border-primary/30 transition-all duration-500">
             {/* Background Pattern */}
             <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:30px_30px] opacity-30" />
             
             <div className="relative z-10">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 {/* App Info */}
                 <div>
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className={`p-4 bg-gradient-to-br ${applications[currentApp].color} rounded-2xl`}>
+                  <div className="flex items-center gap-6 mb-8">
+                    <div className={`p-6 bg-gradient-to-br ${applications[currentApp].color} rounded-3xl border border-primary/20`}>
                       {(() => {
                         const Icon = applications[currentApp].icon;
-                        return <Icon size={32} className={applications[currentApp].iconColor} />;
+                        return <Icon size={40} className={applications[currentApp].iconColor} />;
                       })()}
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-slate-100">
+                      <h3 className="text-3xl font-bold text-foreground mb-2">
                         {applications[currentApp].title}
                       </h3>
-                      <div className="flex items-center gap-2 text-sm text-slate-400">
-                        <Play size={16} />
+                      <div className="flex items-center gap-3 text-base text-muted-foreground">
+                        <Play size={20} />
                         <span>Demo interactivo</span>
                       </div>
                     </div>
                   </div>
 
-                  <p className="text-slate-400 leading-relaxed mb-8 text-lg">
+                  <p className="text-muted-foreground leading-relaxed mb-10 text-xl font-light">
                     {applications[currentApp].description}
                   </p>
 
-                  <div className="space-y-3 mb-8">
+                  <div className="space-y-4 mb-10">
                     {applications[currentApp].features.map((feature, index) => (
-                      <div key={index} className="flex items-center gap-3">
-                        <div className="w-2 h-2 bg-brand rounded-full" />
-                        <span className="text-slate-300">{feature}</span>
+                      <div key={index} className="flex items-center gap-4">
+                        <div className="w-3 h-3 bg-primary rounded-full" />
+                        <span className="text-foreground text-lg">{feature}</span>
                       </div>
                     ))}
                   </div>
 
                   <a 
                     href="#demo" 
-                    className="btn btn-primary px-6 py-3 group"
+                    className="btn btn-primary px-8 py-4 text-lg font-semibold group hover:scale-105 transition-all duration-300 shadow-lg shadow-primary/25"
                   >
                     Ver Demo
-                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-200" />
+                    <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-300" />
                   </a>
                 </div>
 
                 {/* App Preview */}
                 <div className="relative">
-                  <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-2xl p-6 border border-slate-700/50">
-                    <div className="flex items-center gap-2 mb-4">
-                      <div className="w-3 h-3 bg-red-500 rounded-full" />
-                      <div className="w-3 h-3 bg-yellow-500 rounded-full" />
-                      <div className="w-3 h-3 bg-green-500 rounded-full" />
+                  <div className="bg-gradient-to-br from-card/50 to-card/30 rounded-3xl p-8 border border-border/30 shadow-2xl">
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="w-4 h-4 bg-red-500 rounded-full" />
+                      <div className="w-4 h-4 bg-yellow-500 rounded-full" />
+                      <div className="w-4 h-4 bg-green-500 rounded-full" />
                     </div>
                     
-                    <div className="space-y-4">
-                      <div className="h-4 bg-slate-700/50 rounded animate-pulse" />
-                      <div className="h-4 bg-slate-700/50 rounded w-3/4 animate-pulse" />
-                      <div className="h-32 bg-gradient-to-br from-brand/10 to-accent/10 rounded-lg flex items-center justify-center">
-                        <div className="text-slate-400 text-sm">
+                    <div className="space-y-6">
+                      <div className="h-5 bg-muted/50 rounded animate-pulse" />
+                      <div className="h-5 bg-muted/50 rounded w-3/4 animate-pulse" />
+                      <div className="h-40 bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl flex items-center justify-center border border-primary/20">
+                        <div className="text-muted-foreground text-lg font-medium">
                           {applications[currentApp].title} Preview
                         </div>
                       </div>
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="h-16 bg-slate-700/30 rounded" />
-                        <div className="h-16 bg-slate-700/30 rounded" />
+                      <div className="grid grid-cols-2 gap-6">
+                        <div className="h-20 bg-muted/30 rounded-xl" />
+                        <div className="h-20 bg-muted/30 rounded-xl" />
                       </div>
                     </div>
                   </div>
@@ -183,13 +186,13 @@ export default function Ecosystem() {
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-20">
           <a 
             href="#casos-exito" 
-            className="btn btn-ghost px-8 py-4 text-lg group"
+            className="btn btn-ghost px-10 py-5 text-xl font-semibold group hover:scale-105 transition-all duration-300 border-2"
           >
             Conoce los módulos
-            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-200" />
+            <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform duration-300" />
           </a>
         </div>
       </div>

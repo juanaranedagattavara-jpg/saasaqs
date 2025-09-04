@@ -39,7 +39,7 @@ export default function Solution() {
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="h2 mb-6 text-slate-100">
             La solución que{' '}
-            <span className="text-brand">transforma tu comercio exterior</span>
+            <span className="text-primary">transforma tu comercio exterior</span>
           </h2>
           <p className="text-lg text-slate-400 leading-relaxed">
             QSP SpA convierte datos complejos en inteligencia accionable, 
@@ -58,7 +58,7 @@ export default function Solution() {
               >
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0 p-3 bg-cyan-500/10 rounded-2xl group-hover:bg-cyan-500/20 transition-colors duration-300">
-                    <Icon size={24} className="text-brand" />
+                    <Icon size={24} className="text-primary" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-slate-100 mb-3">
@@ -75,7 +75,7 @@ export default function Solution() {
         </div>
 
         {/* Benefits Section */}
-        <div className="bg-gradient-to-r from-brand/5 to-accent/5 rounded-2xl p-8 md:p-12">
+        <div className="bg-gradient-to-r from-primary/5 to-accent/5 rounded-2xl p-8 md:p-12">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">
               <h3 className="text-2xl font-bold text-slate-100 mb-4">
@@ -89,7 +89,7 @@ export default function Solution() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               {benefits.map((benefit, index) => (
                 <div key={index} className="flex items-center gap-3">
-                  <CheckCircle size={20} className="text-brand flex-shrink-0" />
+                  <CheckCircle size={20} className="text-primary flex-shrink-0" />
                   <span className="text-slate-100 font-medium">{benefit}</span>
                 </div>
               ))}

@@ -1,5 +1,6 @@
 'use client';
 
+import { memo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
@@ -13,7 +14,7 @@ interface TopTableProps {
   isLoading?: boolean;
 }
 
-export default function TopTable({ title, data, type, isLoading = false }: TopTableProps) {
+const TopTable = memo(function TopTable({ title, data, type, isLoading = false }: TopTableProps) {
   const getChangeIcon = (changeType: string) => {
     switch (changeType) {
       case 'increase':
@@ -38,9 +39,9 @@ export default function TopTable({ title, data, type, isLoading = false }: TopTa
 
   if (isLoading) {
     return (
-      <Card>
+      <Card role="region" aria-labelledby={`table-${title.toLowerCase().replace(/\s+/g, '-')}-title`}>
         <CardHeader>
-          <CardTitle>{title}</CardTitle>
+          <CardTitle id={`table-${title.toLowerCase().replace(/\s+/g, '-')}-title`}>{title}</CardTitle>
           <p className="text-sm text-muted-foreground">
             {type === 'products' ? 'Principales productos exportados' : 'Principales destinos comerciales'}
           </p>
@@ -71,19 +72,19 @@ export default function TopTable({ title, data, type, isLoading = false }: TopTa
   }
 
   return (
-    <Card className="group">
+    <Card className="group" role="region" aria-labelledby={`table-${title.toLowerCase().replace(/\s+/g, '-')}-title`}>
       <CardHeader>
-        <CardTitle className="group-hover:text-primary transition-colors duration-200">{title}</CardTitle>
+        <CardTitle id={`table-${title.toLowerCase().replace(/\s+/g, '-')}-title`} className="group-hover:text-primary transition-colors duration-200">{title}</CardTitle>
         <p className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-200">
           {type === 'products' ? 'Principales productos exportados' : 'Principales destinos comerciales'}
         </p>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-4" role="list" aria-label={`Lista de ${title.toLowerCase()}`}>
           {data.map((item, index) => (
-            <div key={item.id} className="flex items-center justify-between group/item hover:bg-muted/30 rounded-lg p-2 -m-2 transition-all duration-200">
+            <div key={item.id} className="flex items-center justify-between group/item hover:bg-muted/30 rounded-lg p-2 -m-2 transition-all duration-200" role="listitem">
               <div className="flex items-center space-x-3">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-muted text-sm font-medium group-hover/item:bg-primary group-hover/item:text-primary-foreground transition-colors duration-200">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-muted text-sm font-medium group-hover/item:bg-primary group-hover/item:text-primary-foreground transition-colors duration-200" aria-label={`Posición ${index + 1}`}>
                   {index + 1}
                 </div>
                 <div>
@@ -122,4 +123,6 @@ export default function TopTable({ title, data, type, isLoading = false }: TopTa
       </CardContent>
     </Card>
   );
-}
+});
+
+export default TopTable;

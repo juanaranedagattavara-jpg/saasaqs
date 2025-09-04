@@ -87,7 +87,7 @@ export default function Authority() {
                 className="card p-6 text-center hover:scale-105 transition-transform duration-300 group"
               >
                 <div className="inline-flex items-center justify-center p-4 bg-cyan-500/10 rounded-2xl mb-4 group-hover:bg-cyan-500/20 transition-colors duration-300">
-                  <Icon size={24} className="text-brand" />
+                  <Icon size={24} className="text-primary" />
                 </div>
                 <h3 className="text-lg font-semibold text-slate-100 mb-3">
                   {credential.title}
@@ -101,7 +101,7 @@ export default function Authority() {
         </div>
 
         {/* Certifications */}
-        <div className="bg-gradient-to-r from-brand/5 to-accent/5 rounded-2xl p-8 mb-16">
+        <div className="bg-gradient-to-r from-primary/5 to-accent/5 rounded-2xl p-8 mb-16">
           <div className="text-center mb-8">
             <h3 className="text-2xl font-bold text-slate-100 mb-4">
               Certificaciones y Cumplimiento
@@ -114,7 +114,7 @@ export default function Authority() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
             {certifications.map((cert, index) => (
               <div key={index} className="flex items-center gap-3">
-                <CheckCircle size={20} className="text-brand flex-shrink-0" />
+                <CheckCircle size={20} className="text-primary flex-shrink-0" />
                 <span className="text-slate-100 font-medium">{cert}</span>
               </div>
             ))}
@@ -134,13 +134,13 @@ export default function Authority() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {team.map((member, index) => (
             <div key={index} className="card p-6 text-center hover:scale-105 transition-transform duration-300">
-              <div className="w-20 h-20 bg-gradient-to-br from-brand to-accent rounded-full mx-auto mb-4 flex items-center justify-center">
+              <div className="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-full mx-auto mb-4 flex items-center justify-center">
                 <Building2 size={32} className="text-white" />
               </div>
               <h4 className="text-xl font-semibold text-slate-100 mb-2">
                 {member.name}
               </h4>
-              <div className="text-brand font-medium mb-2">
+              <div className="text-primary font-medium mb-2">
                 {member.role}
               </div>
               <div className="text-sm text-slate-400 mb-3">
@@ -162,7 +162,7 @@ export default function Authority() {
             </div>
             <div className="w-px h-6 bg-[#1b2736]" />
             <div className="flex items-center gap-2">
-              <TrendingUp size={20} className="text-brand" />
+              <TrendingUp size={20} className="text-primary" />
               <span className="text-slate-100 font-semibold">150+ Clientes</span>
             </div>
             <div className="w-px h-6 bg-[#1b2736]" />

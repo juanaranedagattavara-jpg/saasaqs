@@ -4,7 +4,6 @@ import {
   FileText, 
   Download,
   ArrowRight,
-  Calendar,
   TrendingUp,
   Globe,
   BarChart3,
@@ -77,86 +76,89 @@ export default function Insights() {
   ];
 
   return (
-    <section id="insights" className="py-20 bg-card/30">
+    <section id="insights" className="py-20 bg-card/20">
       <div className="container">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="h2 mb-6 text-slate-100">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-foreground leading-tight">
             Convierte incertidumbre en{' '}
-            <span className="text-brand">oportunidad</span>
+            <span className="text-primary bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              oportunidad
+            </span>
           </h2>
-          <p className="text-lg text-slate-400 leading-relaxed">
-            Nuestros insights te mantienen un paso adelante en el competitivo mundo del comercio exterior.
+          <p className="text-lg text-muted-foreground leading-relaxed font-light max-w-2xl mx-auto">
+            Nuestros insights te mantienen un paso adelante en el competitivo mundo del comercio exterior, 
+            transformando información en ventaja estratégica.
           </p>
         </div>
 
         {/* Lead Magnet */}
-        <div className="bg-gradient-to-r from-brand/10 to-accent/10 rounded-2xl p-8 md:p-12 mb-16 relative overflow-hidden">
+        <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-3xl p-12 md:p-16 mb-20 relative overflow-hidden border border-primary/10">
           {/* Background Pattern */}
           <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:30px_30px] opacity-30" />
           
           <div className="relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="p-4 bg-gradient-to-br from-brand/20 to-accent/20 rounded-2xl">
-                    <FileText size={32} className="text-brand" />
+                <div className="flex items-center gap-6 mb-8">
+                  <div className="p-5 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl border border-primary/20">
+                    <FileText size={40} className="text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-slate-100">
+                    <h3 className="text-3xl font-bold text-foreground mb-2">
                       {leadMagnet.title}
                     </h3>
-                    <div className="flex items-center gap-2 text-sm text-slate-400">
-                      <Download size={16} />
+                    <div className="flex items-center gap-3 text-base text-muted-foreground">
+                      <Download size={20} />
                       <span>{leadMagnet.downloads} descargas</span>
                     </div>
                   </div>
                 </div>
 
-                <p className="text-slate-400 leading-relaxed mb-6 text-lg">
+                <p className="text-muted-foreground leading-relaxed mb-8 text-xl font-light">
                   {leadMagnet.description}
                 </p>
 
-                <div className="space-y-3 mb-8">
+                <div className="space-y-4 mb-10">
                   {leadMagnet.features.map((feature, index) => (
-                    <div key={index} className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-brand rounded-full" />
-                      <span className="text-slate-300">{feature}</span>
+                    <div key={index} className="flex items-center gap-4">
+                      <div className="w-3 h-3 bg-primary rounded-full" />
+                      <span className="text-foreground text-lg">{feature}</span>
                     </div>
                   ))}
                 </div>
 
                 <a 
                   href="#demo" 
-                  className="btn btn-primary px-6 py-3 group"
+                  className="btn btn-primary px-8 py-4 text-lg font-semibold group hover:scale-105 transition-all duration-300 shadow-lg shadow-primary/25"
                 >
                   Descargar Gratis
-                  <Download size={18} className="group-hover:translate-y-1 transition-transform duration-200" />
+                  <Download size={20} className="group-hover:translate-y-1 transition-transform duration-300" />
                 </a>
               </div>
 
               {/* PDF Preview */}
               <div className="relative">
-                <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-2xl p-6 border border-slate-700/50">
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-3 h-3 bg-red-500 rounded-full" />
-                    <div className="w-3 h-3 bg-yellow-500 rounded-full" />
-                    <div className="w-3 h-3 bg-green-500 rounded-full" />
+                <div className="bg-gradient-to-br from-card/50 to-card/30 rounded-3xl p-8 border border-border/30 shadow-2xl">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-4 h-4 bg-red-500 rounded-full" />
+                    <div className="w-4 h-4 bg-yellow-500 rounded-full" />
+                    <div className="w-4 h-4 bg-green-500 rounded-full" />
                   </div>
                   
-                  <div className="space-y-4">
-                    <div className="h-4 bg-slate-700/50 rounded animate-pulse" />
-                    <div className="h-4 bg-slate-700/50 rounded w-3/4 animate-pulse" />
-                    <div className="h-48 bg-gradient-to-br from-brand/10 to-accent/10 rounded-lg flex items-center justify-center">
+                  <div className="space-y-6">
+                    <div className="h-5 bg-muted/50 rounded animate-pulse" />
+                    <div className="h-5 bg-muted/50 rounded w-3/4 animate-pulse" />
+                    <div className="h-56 bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl flex items-center justify-center border border-primary/20">
                       <div className="text-center">
-                        <FileText size={48} className="text-slate-400 mx-auto mb-2" />
-                        <div className="text-slate-400 text-sm">
+                        <FileText size={56} className="text-muted-foreground mx-auto mb-3" />
+                        <div className="text-muted-foreground text-lg font-medium">
                           Informe de Tendencias 2024
                         </div>
                       </div>
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="h-12 bg-slate-700/30 rounded" />
-                      <div className="h-12 bg-slate-700/30 rounded" />
+                    <div className="grid grid-cols-2 gap-6">
+                      <div className="h-16 bg-muted/30 rounded-xl" />
+                      <div className="h-16 bg-muted/30 rounded-xl" />
                     </div>
                   </div>
                 </div>
@@ -166,39 +168,39 @@ export default function Insights() {
         </div>
 
         {/* Articles Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-20">
           {articles.map((article, index) => {
             const Icon = article.icon;
             return (
               <div 
                 key={index}
-                className="card p-6 hover:scale-105 transition-all duration-300 group relative overflow-hidden"
+                className="card p-8 hover:scale-105 transition-all duration-500 group relative overflow-hidden border border-border/50 hover:border-primary/30"
               >
                 {/* Background Pattern */}
                 <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:20px_20px] opacity-30" />
                 
                 <div className="relative z-10">
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className={`p-3 bg-gradient-to-br ${article.color} rounded-xl group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon size={20} className={article.iconColor} />
+                  <div className="flex items-start gap-6 mb-6">
+                    <div className={`p-4 bg-gradient-to-br ${article.color} rounded-2xl group-hover:scale-110 transition-transform duration-500 border border-primary/20`}>
+                      <Icon size={24} className={article.iconColor} />
                     </div>
                     <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="text-xs font-medium text-brand bg-brand/10 px-2 py-1 rounded-full">
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="text-sm font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
                           {article.category}
                         </span>
-                        <span className="text-xs text-slate-400">•</span>
-                        <span className="text-xs text-slate-400">{article.readTime}</span>
+                        <span className="text-sm text-muted-foreground">•</span>
+                        <span className="text-sm text-muted-foreground">{article.readTime}</span>
                       </div>
-                      <h3 className="text-lg font-semibold text-slate-100 mb-3 group-hover:text-brand transition-colors duration-200">
+                      <h3 className="text-xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
                         {article.title}
                       </h3>
-                      <p className="text-slate-400 text-sm leading-relaxed mb-4">
+                      <p className="text-muted-foreground text-base leading-relaxed mb-6 font-light">
                         {article.excerpt}
                       </p>
                       <div className="flex items-center justify-between">
-                        <span className="text-xs text-slate-500">{article.date}</span>
-                        <ArrowRight size={16} className="text-slate-400 group-hover:text-brand group-hover:translate-x-1 transition-all duration-200" />
+                        <span className="text-sm text-muted-foreground">{article.date}</span>
+                        <ArrowRight size={20} className="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
                       </div>
                     </div>
                   </div>
@@ -209,18 +211,18 @@ export default function Insights() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-20">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
-              <div key={index} className="text-center group">
-                <div className="inline-flex items-center justify-center p-4 bg-cyan-500/10 rounded-2xl mb-4 group-hover:bg-cyan-500/20 transition-colors duration-300">
-                  <Icon size={24} className="text-brand" />
+              <div key={index} className="text-center group hover:scale-105 transition-all duration-300">
+                <div className="inline-flex items-center justify-center p-5 bg-primary/10 rounded-3xl mb-6 group-hover:bg-primary/20 transition-colors duration-300 border border-primary/20">
+                  <Icon size={28} className="text-primary" />
                 </div>
-                <div className="text-2xl font-bold text-slate-100 mb-2">
+                <div className="text-3xl font-bold text-foreground mb-3">
                   {stat.value}
                 </div>
-                <div className="text-sm text-slate-400">
+                <div className="text-base text-muted-foreground font-medium">
                   {stat.label}
                 </div>
               </div>
@@ -232,10 +234,10 @@ export default function Insights() {
         <div className="text-center">
           <a 
             href="#kpis" 
-            className="btn btn-ghost px-8 py-4 text-lg group"
+            className="btn btn-ghost px-10 py-5 text-xl font-semibold group hover:scale-105 transition-all duration-300 border-2"
           >
             Lee nuestros insights
-            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-200" />
+            <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform duration-300" />
           </a>
         </div>
       </div>

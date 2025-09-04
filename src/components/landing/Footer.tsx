@@ -64,7 +64,7 @@ export default function Footer() {
             {/* Contact Info */}
             <div className="space-y-3">
               <div className="flex items-center gap-3 text-sm text-slate-400">
-                <Mail size={16} className="text-brand" />
+                <Mail size={16} className="text-primary" />
                 <a 
                   href="mailto:contacto@qsp-spa.com" 
                   className="hover:text-cyan-500 transition-colors duration-200"
@@ -73,7 +73,7 @@ export default function Footer() {
                 </a>
               </div>
               <div className="flex items-center gap-3 text-sm text-slate-400">
-                <Phone size={16} className="text-brand" />
+                <Phone size={16} className="text-primary" />
                 <a 
                   href="tel:+56912345678" 
                   className="hover:text-cyan-500 transition-colors duration-200"
@@ -82,7 +82,7 @@ export default function Footer() {
                 </a>
               </div>
               <div className="flex items-center gap-3 text-sm text-slate-400">
-                <MapPin size={16} className="text-brand" />
+                <MapPin size={16} className="text-primary" />
                 <span>Santiago, Chile</span>
               </div>
             </div>

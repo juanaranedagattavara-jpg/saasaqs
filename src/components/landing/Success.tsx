@@ -43,7 +43,7 @@ export default function Success() {
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="h2 mb-6 text-slate-100">
             Casos de éxito que{' '}
-            <span className="text-brand">hablan por sí solos</span>
+            <span className="text-primary">hablan por sí solos</span>
           </h2>
           <p className="text-lg text-slate-400 leading-relaxed">
             Empresas líderes ya están transformando su comercio exterior con QSP SpA. 
@@ -57,7 +57,7 @@ export default function Success() {
             <div key={index} className="card p-8 hover:scale-105 transition-transform duration-300">
               <div className="flex items-start gap-4 mb-6">
                 <div className="flex-shrink-0 p-2 bg-cyan-500/10 rounded-xl">
-                  <Quote size={20} className="text-brand" />
+                  <Quote size={20} className="text-primary" />
                 </div>
                 <div className="flex-1">
                   <p className="text-slate-100 leading-relaxed mb-6 italic">
@@ -73,12 +73,12 @@ export default function Success() {
                         <div className="text-sm text-slate-400">
                           {testimonial.role}
                         </div>
-                        <div className="text-sm text-brand font-medium">
+                        <div className="text-sm text-primary font-medium">
                           {testimonial.company}
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="text-2xl font-bold text-brand">
+                        <div className="text-2xl font-bold text-primary">
                           {testimonial.metric}
                         </div>
                         <div className="text-xs text-slate-400">
@@ -94,7 +94,7 @@ export default function Success() {
         </div>
 
         {/* Stats Section */}
-        <div className="bg-gradient-to-r from-brand/5 to-accent/5 rounded-2xl p-8 md:p-12">
+        <div className="bg-gradient-to-r from-primary/5 to-accent/5 rounded-2xl p-8 md:p-12">
           <div className="text-center mb-8">
             <h3 className="text-2xl font-bold text-slate-100 mb-4">
               Números que respaldan nuestro éxito
@@ -110,7 +110,7 @@ export default function Success() {
               return (
                 <div key={index} className="text-center">
                   <div className="inline-flex items-center justify-center p-4 bg-cyan-500/10 rounded-2xl mb-4">
-                    <Icon size={24} className="text-brand" />
+                    <Icon size={24} className="text-primary" />
                   </div>
                   <div className="text-3xl font-bold text-slate-100 mb-2">
                     {stat.value}

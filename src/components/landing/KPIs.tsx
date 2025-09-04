@@ -105,24 +105,65 @@ export default function KPIs() {
   ];
 
   return (
-    <section id="kpis" className="py-20">
+    <section id="kpis" className="py-24">
       <div className="container">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="h2 mb-6 text-slate-100">
-            Más de 10 años, 50 herramientas diseñadas,{' '}
-            <span className="text-brand">7 sectores cubiertos</span>
+        <div className="max-w-6xl mx-auto text-center mb-24">
+          {/* Main Stats Display */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div className="text-center group">
+              <div className="text-6xl md:text-7xl font-extrabold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                10+
+              </div>
+              <div className="text-xl text-muted-foreground font-medium">Años de experiencia</div>
+            </div>
+            <div className="text-center group">
+              <div className="text-6xl md:text-7xl font-extrabold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                50+
+              </div>
+              <div className="text-xl text-muted-foreground font-medium">Herramientas diseñadas</div>
+            </div>
+            <div className="text-center group">
+              <div className="text-6xl md:text-7xl font-extrabold text-primary mb-2 group-hover:scale-110 transition-transform duration-300">
+                7
+              </div>
+              <div className="text-xl text-muted-foreground font-medium">Sectores cubiertos</div>
+            </div>
+          </div>
+
+          {/* Main Headline */}
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 text-foreground leading-tight">
+            Una trayectoria que{' '}
+            <span className="text-primary bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              respalda cada promesa
+            </span>
           </h2>
-          <p className="text-lg text-slate-400 leading-relaxed">
-            Nuestra trayectoria respalda cada promesa que hacemos a nuestros clientes.
+          
+          <p className="text-xl text-muted-foreground leading-relaxed font-light max-w-4xl mx-auto">
+            Más de una década transformando el comercio exterior con herramientas especializadas 
+            y experiencia comprobada en múltiples sectores industriales.
           </p>
         </div>
 
         {/* Timeline */}
-        <div className="relative max-w-6xl mx-auto mb-16">
+        <div className="relative max-w-7xl mx-auto mb-24">
+          {/* Timeline Header */}
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-3 bg-accent/10 text-accent px-6 py-3 rounded-full text-sm font-semibold mb-8 border border-accent/20">
+              <Calendar size={20} />
+              Nuestra Evolución
+            </div>
+            <h3 className="text-4xl font-bold text-foreground mb-6">
+              Una década de innovación continua
+            </h3>
+            <p className="text-xl text-muted-foreground font-light max-w-3xl mx-auto">
+              Cada año marcado por avances significativos en tecnología y experiencia
+            </p>
+          </div>
+
           {/* Timeline Line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-brand via-accent to-brand opacity-30" />
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary via-accent to-primary opacity-40" />
           
-          <div className="space-y-12">
+          <div className="space-y-20">
             {milestones.map((milestone, index) => {
               const Icon = milestone.icon;
               const isEven = index % 2 === 0;
@@ -130,26 +171,26 @@ export default function KPIs() {
               return (
                 <div key={index} className={`flex items-center ${isEven ? 'flex-row' : 'flex-row-reverse'}`}>
                   {/* Content */}
-                  <div className={`w-1/2 ${isEven ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
-                    <div className="card p-6 hover:scale-105 transition-all duration-300 group relative overflow-hidden">
+                  <div className={`w-1/2 ${isEven ? 'pr-16 text-right' : 'pl-16 text-left'}`}>
+                    <div className="card p-10 hover:scale-105 transition-all duration-500 group relative overflow-hidden border border-border/50 hover:border-primary/30 bg-gradient-to-br from-card/50 to-card/30">
                       {/* Background Pattern */}
                       <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:20px_20px] opacity-30" />
                       
                       <div className="relative z-10">
-                        <div className="flex items-center gap-4 mb-4">
-                          <div className={`p-3 bg-gradient-to-br ${milestone.color} rounded-xl group-hover:scale-110 transition-transform duration-300`}>
-                            <Icon size={24} className={milestone.iconColor} />
+                        <div className={`flex items-center gap-8 mb-8 ${isEven ? 'flex-row-reverse' : 'flex-row'}`}>
+                          <div className={`p-6 bg-gradient-to-br ${milestone.color} rounded-3xl group-hover:scale-110 transition-transform duration-500 border border-primary/20 group-hover:border-primary/40`}>
+                            <Icon size={32} className={milestone.iconColor} />
                           </div>
-                          <div>
-                            <div className="text-2xl font-bold text-brand">
+                          <div className={isEven ? 'text-right' : 'text-left'}>
+                            <div className="text-4xl font-extrabold text-primary mb-3">
                               {milestone.year}
                             </div>
-                            <h3 className="text-lg font-semibold text-slate-100">
+                            <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
                               {milestone.title}
                             </h3>
                           </div>
                         </div>
-                        <p className="text-slate-400 text-sm leading-relaxed">
+                        <p className="text-muted-foreground text-lg leading-relaxed font-light">
                           {milestone.description}
                         </p>
                       </div>
@@ -157,8 +198,8 @@ export default function KPIs() {
                   </div>
 
                   {/* Timeline Dot */}
-                  <div className="relative z-10 w-8 h-8 bg-gradient-to-br from-brand to-accent rounded-full border-4 border-slate-900 flex items-center justify-center">
-                    <div className="w-3 h-3 bg-white rounded-full" />
+                  <div className="relative z-10 w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full border-4 border-background flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-6 h-6 bg-white rounded-full" />
                   </div>
 
                   {/* Empty space for alignment */}
@@ -170,36 +211,45 @@ export default function KPIs() {
         </div>
 
         {/* Key Numbers */}
-        <div className="bg-gradient-to-r from-brand/5 to-accent/5 rounded-2xl p-8 md:p-12 mb-16">
-          <div className="text-center mb-12">
-            <h3 className="text-2xl font-bold text-slate-100 mb-4">
-              Números que respaldan nuestra experiencia
-            </h3>
-            <p className="text-slate-400">
-              Una década de innovación y resultados comprobados
-            </p>
-          </div>
+        <div className="bg-gradient-to-br from-card/50 to-card/30 rounded-3xl p-16 md:p-20 mb-24 border border-border/30 relative overflow-hidden">
+          {/* Background Pattern */}
+          <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:40px_40px] opacity-30" />
+          
+          <div className="relative z-10">
+            <div className="text-center mb-20">
+              <div className="inline-flex items-center gap-3 bg-primary/10 text-primary px-6 py-3 rounded-full text-sm font-semibold mb-8 border border-primary/20">
+                <Award size={20} />
+                Métricas de Confianza
+              </div>
+              <h3 className="text-4xl font-bold text-foreground mb-6">
+                Números que respaldan nuestra experiencia
+              </h3>
+              <p className="text-xl text-muted-foreground font-light max-w-3xl mx-auto">
+                Una década de innovación y resultados comprobados que hablan por sí solos
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {keyNumbers.map((number, index) => {
-              const Icon = number.icon;
-              return (
-                <div key={index} className="text-center group">
-                  <div className="inline-flex items-center justify-center p-4 bg-cyan-500/10 rounded-2xl mb-4 group-hover:bg-cyan-500/20 transition-colors duration-300">
-                    <Icon size={24} className="text-brand" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+              {keyNumbers.map((number, index) => {
+                const Icon = number.icon;
+                return (
+                  <div key={index} className="text-center group hover:scale-105 transition-all duration-500 p-8 rounded-2xl hover:bg-card/30 border border-transparent hover:border-primary/20">
+                    <div className="inline-flex items-center justify-center p-6 bg-gradient-to-br from-primary/10 to-accent/10 rounded-3xl mb-8 group-hover:from-primary/20 group-hover:to-accent/20 transition-all duration-500 border border-primary/20 group-hover:border-primary/40">
+                      <Icon size={32} className="text-primary group-hover:scale-110 transition-transform duration-300" />
+                    </div>
+                    <div className="text-5xl font-extrabold text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
+                      {number.value}
+                    </div>
+                    <div className="text-2xl font-bold text-primary mb-4">
+                      {number.label}
+                    </div>
+                    <div className="text-lg text-muted-foreground leading-relaxed font-light">
+                      {number.description}
+                    </div>
                   </div>
-                  <div className="text-3xl font-bold text-slate-100 mb-2">
-                    {number.value}
-                  </div>
-                  <div className="text-lg font-semibold text-brand mb-2">
-                    {number.label}
-                  </div>
-                  <div className="text-sm text-slate-400 leading-relaxed">
-                    {number.description}
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
 
@@ -207,10 +257,10 @@ export default function KPIs() {
         <div className="text-center">
           <a 
             href="#cta" 
-            className="btn btn-primary px-8 py-4 text-lg group"
+            className="btn btn-primary px-10 py-5 text-xl font-semibold group hover:scale-105 transition-all duration-300 shadow-lg shadow-primary/25"
           >
             Explora nuestra trayectoria
-            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-200" />
+            <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform duration-300" />
           </a>
         </div>
       </div>

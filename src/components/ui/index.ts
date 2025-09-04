@@ -8,6 +8,7 @@ export { Label } from './label';
 export { LoadingSpinner } from './loading-spinner';
 export { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './select';
 export { Skeleton } from './skeleton';
+export { Switch } from './switch';
 export { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './table';
 export { Textarea } from './textarea';
 

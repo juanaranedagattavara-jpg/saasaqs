@@ -17,6 +17,7 @@ export default function ShellLayout({ children, className }: ShellLayoutProps) {
     { name: 'Inicio', href: '/', icon: Home },
     { name: 'Dashboard', href: '/dashboard', icon: BarChart3 },
     { name: 'Reportes', href: '/reportes', icon: FileText },
+    { name: 'Plan', href: '/planes', icon: BarChart3 },
   ];
 
   return (
@@ -46,7 +47,7 @@ export default function ShellLayout({ children, className }: ShellLayoutProps) {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav aria-label="Navegación principal" className="hidden md:flex items-center gap-6">
+            <nav aria-label="Navegación principal" className="hidden md:flex items-center gap-6" role="navigation">
               {navigation.map((item) => {
                 const Icon = item.icon;
                 return (
@@ -54,9 +55,10 @@ export default function ShellLayout({ children, className }: ShellLayoutProps) {
                     key={item.name}
                     href={item.href}
                     className="flex items-center gap-2 text-sm text-foreground hover:text-primary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-md px-2 py-1"
+                    aria-label={`Ir a ${item.name}`}
                   >
-                    <Icon size={16} />
-                    {item.name}
+                    <Icon size={16} aria-hidden="true" />
+                    <span>{item.name}</span>
                   </Link>
                 );
               })}
@@ -66,11 +68,11 @@ export default function ShellLayout({ children, className }: ShellLayoutProps) {
             <button
               className="md:hidden p-2 text-foreground hover:text-primary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-md"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label="Abrir menú de navegación"
+              aria-label={isMenuOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
             </button>
           </div>
 
@@ -80,6 +82,7 @@ export default function ShellLayout({ children, className }: ShellLayoutProps) {
               id="mobile-menu"
               className="md:hidden border-t border-[#1b2736] py-4"
               aria-label="Navegación móvil"
+              role="navigation"
             >
               <div className="space-y-2">
                 {navigation.map((item) => {
@@ -90,9 +93,10 @@ export default function ShellLayout({ children, className }: ShellLayoutProps) {
                       href={item.href}
                       className="flex items-center gap-3 text-foreground hover:text-primary hover:bg-card/50 transition-colors duration-200 rounded-md px-3 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                       onClick={() => setIsMenuOpen(false)}
+                      aria-label={`Ir a ${item.name}`}
                     >
-                      <Icon size={18} />
-                      {item.name}
+                      <Icon size={18} aria-hidden="true" />
+                      <span>{item.name}</span>
                     </Link>
                   );
                 })}

@@ -30,6 +30,9 @@ export default function Header() {
           <a href="#exito" className="text-foreground hover:text-primary transition-colors duration-200">
             Casos
           </a>
+          <a href="/planes" className="text-foreground hover:text-primary transition-colors duration-200">
+            Plan
+          </a>
           <a href="#cta" className="btn btn-primary">
             Demo Gratis
           </a>
@@ -73,6 +76,13 @@ export default function Header() {
               onClick={() => setIsMenuOpen(false)}
             >
               Casos
+            </a>
+            <a 
+              href="/planes" 
+              className="block text-foreground hover:text-primary transition-colors duration-200"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Plan
             </a>
             <a 
               href="#cta" 

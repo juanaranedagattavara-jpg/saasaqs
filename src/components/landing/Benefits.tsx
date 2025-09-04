@@ -80,7 +80,7 @@ export default function Benefits() {
               >
                 <div className="text-center">
                   <div className="inline-flex items-center justify-center p-4 bg-cyan-500/10 rounded-2xl mb-6 group-hover:bg-cyan-500/20 transition-colors duration-300">
-                    <Icon size={32} className="text-brand" />
+                    <Icon size={32} className="text-primary" />
                   </div>
                   
                   <h3 className="text-xl font-semibold text-slate-100 mb-4">
@@ -92,7 +92,7 @@ export default function Benefits() {
                   </p>
 
                   <div className="border-t border-[#1b2736] pt-6">
-                    <div className="text-3xl font-bold text-brand mb-1">
+                    <div className="text-3xl font-bold text-primary mb-1">
                       {benefit.metric}
                     </div>
                     <div className="text-sm text-slate-400">
@@ -107,11 +107,11 @@ export default function Benefits() {
 
         {/* ROI Section */}
         <div className="mt-16 text-center">
-          <div className="inline-flex items-center gap-4 bg-gradient-to-r from-brand/10 to-accent/10 px-8 py-6 rounded-2xl">
-            <DollarSign size={32} className="text-brand" />
+          <div className="inline-flex items-center gap-4 bg-gradient-to-r from-primary/10 to-accent/10 px-8 py-6 rounded-2xl">
+            <DollarSign size={32} className="text-primary" />
             <div className="text-left">
               <div className="text-2xl font-bold text-slate-100">ROI Promedio</div>
-              <div className="text-3xl font-extrabold text-brand">300%</div>
+              <div className="text-3xl font-extrabold text-primary">300%</div>
               <div className="text-sm text-slate-400">en los primeros 12 meses</div>
             </div>
           </div>
