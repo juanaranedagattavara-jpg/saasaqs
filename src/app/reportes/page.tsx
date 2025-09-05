@@ -25,6 +25,8 @@ export default function ReportesPage() {
     filters: {}
   });
 
+// SEO manejado en layout
+
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'completed':
@@ -89,13 +91,13 @@ export default function ReportesPage() {
             <Plus className="h-4 w-4" aria-hidden="true" />
             <span>Nuevo Reporte</span>
           </Button>
-        </div>
+        </header>
 
         {/* Form Modal */}
         {showForm && (
-          <Card>
+          <Card role="dialog" aria-labelledby="form-title" aria-modal="true">
             <CardHeader>
-              <CardTitle>Crear Nuevo Reporte</CardTitle>
+              <CardTitle id="form-title">Crear Nuevo Reporte</CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -108,15 +110,19 @@ export default function ReportesPage() {
                       onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                       placeholder="Ej: Reporte Mensual Exportaciones"
                       required
+                      aria-describedby="title-help"
                     />
+                    <p id="title-help" className="text-sm text-muted-foreground mt-1">
+                      Ingresa un título descriptivo para tu reporte
+                    </p>
                   </div>
                   <div>
                     <Label htmlFor="type">Tipo de Reporte</Label>
                     <Select
                       value={formData.type}
-                                             onValueChange={(value) => setFormData({ ...formData, type: value as ReportFormData['type'] })}
+                      onValueChange={(value) => setFormData({ ...formData, type: value as ReportFormData['type'] })}
                     >
-                      <SelectTrigger>
+                      <SelectTrigger aria-describedby="type-help">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -127,6 +133,9 @@ export default function ReportesPage() {
                         <SelectItem value="paises">Países</SelectItem>
                       </SelectContent>
                     </Select>
+                    <p id="type-help" className="text-sm text-muted-foreground mt-1">
+                      Elige el tipo de datos que quieres analizar
+                    </p>
                   </div>
                 </div>
                 <div>
@@ -137,7 +146,11 @@ export default function ReportesPage() {
                     onChange={(e) => setFormData({ ...formData, period: e.target.value })}
                     placeholder="Ej: Diciembre 2024"
                     required
+                    aria-describedby="period-help"
                   />
+                  <p id="period-help" className="text-sm text-muted-foreground mt-1">
+                    Especifica el período de tiempo para el reporte
+                  </p>
                 </div>
                 <div>
                   <Label htmlFor="description">Descripción (Opcional)</Label>
@@ -147,20 +160,25 @@ export default function ReportesPage() {
                     rows={3}
                   />
                 </div>
-                <div className="flex justify-end space-x-2">
+                <div className="flex justify-end space-x-2" role="group" aria-label="Acciones del formulario">
                   <Button
                     type="button"
                     variant="outline"
                     onClick={() => setShowForm(false)}
                     disabled={isSubmitting}
+                    aria-label="Cancelar creación de reporte"
                   >
                     Cancelar
                   </Button>
-                  <Button type="submit" disabled={isSubmitting}>
+                  <Button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    aria-label={isSubmitting ? "Creando reporte, por favor espera" : "Crear nuevo reporte"}
+                  >
                     {isSubmitting ? (
                       <>
-                        <LoadingSpinner size="sm" className="mr-2" />
-                        Creando...
+                        <LoadingSpinner size="sm" className="mr-2" aria-hidden="true" />
+                        <span>Creando...</span>
                       </>
                     ) : (
                       'Crear Reporte'
@@ -173,39 +191,46 @@ export default function ReportesPage() {
         )}
 
         {/* Reports List */}
-        <div className="grid grid-cols-1 gap-4">
-          {reports.map((report) => (
-            <Card key={report.id} className="group/report hover:shadow-lg hover:shadow-primary/5 transition-all duration-200">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-4">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 group-hover/report:bg-primary/20 group-hover/report:scale-110 transition-all duration-200">
-                      <FileText className="h-5 w-5 text-primary group-hover/report:text-primary/80" />
+        <section aria-label="Lista de reportes generados">
+          <div className="grid grid-cols-1 gap-4" role="list">
+            {reports.map((report) => (
+              <Card key={report.id} className="group/report hover:shadow-lg hover:shadow-primary/5 transition-all duration-200" role="listitem">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-4">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 group-hover/report:bg-primary/20 group-hover/report:scale-110 transition-all duration-200" aria-hidden="true">
+                        <FileText className="h-5 w-5 text-primary group-hover/report:text-primary/80" />
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-foreground group-hover/report:text-primary transition-colors duration-200">{report.title}</h3>
+                        <p className="text-sm text-muted-foreground group-hover/report:text-foreground transition-colors duration-200">
+                          {report.period} • {formatDate(report.createdAt)}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="font-medium text-foreground group-hover/report:text-primary transition-colors duration-200">{report.title}</h3>
-                      <p className="text-sm text-muted-foreground group-hover/report:text-foreground transition-colors duration-200">
-                        {report.period} • {formatDate(report.createdAt)}
-                      </p>
+                    <div className="flex items-center space-x-3">
+                      <Badge className={`${getStatusColor(report.status)} group-hover/report:scale-105 transition-all duration-200`} aria-label={`Estado: ${report.status}`}>
+                        {getStatusIcon(report.status)}
+                        <span className="ml-1 capitalize">{report.status}</span>
+                      </Badge>
+                      {report.status === 'completed' && report.downloadUrl && (
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          className="group-hover/report:bg-primary group-hover/report:text-primary-foreground transition-all duration-200"
+                          aria-label={`Descargar reporte: ${report.title}`}
+                        >
+                          <Download className="h-4 w-4 mr-2 group-hover/report:animate-bounce" aria-hidden="true" />
+                          <span>Descargar</span>
+                        </Button>
+                      )}
                     </div>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <Badge className={`${getStatusColor(report.status)} group-hover/report:scale-105 transition-all duration-200`}>
-                      {getStatusIcon(report.status)}
-                      <span className="ml-1 capitalize">{report.status}</span>
-                    </Badge>
-                    {report.status === 'completed' && report.downloadUrl && (
-                      <Button variant="outline" size="sm" className="group-hover/report:bg-primary group-hover/report:text-primary-foreground transition-all duration-200">
-                        <Download className="h-4 w-4 mr-2 group-hover/report:animate-bounce" />
-                        Descargar
-                      </Button>
-                    )}
-                  </div>
                 </div>
               </CardContent>
             </Card>
           ))}
-        </div>
+          </div>
+        </section>
       </div>
     </ShellLayout>
   );

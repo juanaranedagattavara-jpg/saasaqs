@@ -1,24 +1,14 @@
-import type { Metadata } from "next";
-import PricingSection from "@/components/landing/PricingSection";
-import ShellLayout from "@/components/ShellLayout";
+'use client';
 
-export const metadata: Metadata = {
-  title: "Planes y Precios - QSP SpA",
-  description: "Elige el plan perfecto para tu empresa. Desde análisis básicos hasta inteligencia completa de comercio exterior.",
-  keywords: "planes, precios, comercio exterior, análisis, QSP SpA, suscripción",
-  openGraph: {
-    title: "Planes y Precios - QSP SpA",
-    description: "Elige el plan perfecto para tu empresa. Desde análisis básicos hasta inteligencia completa de comercio exterior.",
-    url: "https://qsp-spa.com/planes",
-  },
-};
+import ShellLayout from '@/components/layout/ShellLayout';
+import PricingSection from '@/components/landing/PricingSection';
 
 export default function PlanesPage() {
   return (
-    <div className="min-h-screen bg-background">
-      <ShellLayout>
-        <PricingSection />
+    <ShellLayout>
+        <div className="min-h-screen bg-background">
+          <PricingSection />
+        </div>
       </ShellLayout>
-    </div>
   );
 }

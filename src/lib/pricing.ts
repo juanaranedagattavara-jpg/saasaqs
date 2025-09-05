@@ -97,9 +97,9 @@ export const plansData: Plan[] = [
   }
 ];
 
-export function formatPrice(price: number, currency: 'CLP_k' | 'UF', billing: 'monthly' | 'yearly'): string {
+export function formatPrice(price: number, currency: 'CLP_k' | 'UF', _billing: 'monthly' | 'yearly'): string {
   if (currency === 'CLP_k') {
-    return `M$${price.toLocaleString('es-CL')}`;
+    return `$${price.toLocaleString('es-CL')}`;
   } else {
     return `${price} UF`;
   }
@@ -107,7 +107,7 @@ export function formatPrice(price: number, currency: 'CLP_k' | 'UF', billing: 'm
 
 export function getPriceLabel(currency: 'CLP_k' | 'UF', billing: 'monthly' | 'yearly'): string {
   if (currency === 'CLP_k') {
-    return billing === 'monthly' ? 'M$/mes' : 'M$/año';
+    return billing === 'monthly' ? 'CLP/mes' : 'CLP/año';
   } else {
     return billing === 'monthly' ? 'UF/mes' : 'UF/año';
   }

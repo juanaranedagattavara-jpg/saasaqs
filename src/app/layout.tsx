@@ -10,8 +10,11 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "QSP SpA – Inteligencia de Comercio Exterior",
-  description: "QSP convierte datos aduaneros en dashboards claros y reportes estratégicos. Dashboards premium, reportes automáticos y consultoría para exportadores.",
+  title: {
+    default: "QSP SpA – Inteligencia de Comercio Exterior",
+    template: "%s | QSP SpA",
+  },
+  description: "Transforma datos complejos de comercio exterior en inteligencia accionable. Dashboards, reportes automáticos y consultoría estratégica para exportadores.",
   keywords: "comercio exterior, exportaciones, importaciones, dashboard, análisis, reportes, QSP SpA, inteligencia comercial, datos aduaneros",
   authors: [{ name: "QSP SpA" }],
   creator: "QSP SpA",

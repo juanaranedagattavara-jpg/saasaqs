@@ -11,7 +11,7 @@ import FinalCta from '@/components/landing/FinalCta';
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
-      <ShellLayout>
+        <ShellLayout>
         {/* 1. Hero */}
         <Hero />
         

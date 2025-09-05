@@ -32,20 +32,19 @@ export default function PricingSection() {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94]
+        duration: 0.6
       }
     }
   };
 
-  const getCardStyles = (color: string, isPremium: boolean) => {
+  const getCardStyles = (_color: string, isPro: boolean) => {
     const baseStyles = "relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1";
     
-    if (isPremium) {
-      return `${baseStyles} border-2 border-green-500/20 bg-gradient-to-br from-green-50/5 to-green-100/5 shadow-green-500/10`;
+    if (isPro) {
+      return `${baseStyles} border-2 border-blue-500/20 bg-gradient-to-br from-blue-50/5 to-blue-100/5 shadow-blue-500/10`;
     }
     
-    switch (color) {
+    switch (_color) {
       case 'blue':
         return `${baseStyles} border-blue-500/20 bg-gradient-to-br from-blue-50/5 to-blue-100/5 shadow-blue-500/10`;
       case 'green':
@@ -55,19 +54,9 @@ export default function PricingSection() {
     }
   };
 
-  const getButtonStyles = (color: string, isPremium: boolean) => {
-    if (isPremium) {
-      return "bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white shadow-lg shadow-green-500/25";
-    }
-    
-    switch (color) {
-      case 'blue':
-        return "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg shadow-blue-500/25";
-      case 'green':
-        return "bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white shadow-lg shadow-green-500/25";
-      default:
-        return "bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white shadow-lg shadow-gray-500/25";
-    }
+  const getButtonStyles = (_color: string, _isPro: boolean) => {
+    // All buttons use the same blue gradient for consistency
+    return "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg shadow-blue-500/25";
   };
 
   return (
@@ -121,7 +110,7 @@ export default function PricingSection() {
           {/* Currency Toggle */}
           <div className="flex items-center gap-4">
             <span className={`text-sm font-medium transition-colors ${currency === 'CLP_k' ? 'text-foreground' : 'text-muted-foreground'}`}>
-              M$
+              CLP
             </span>
             <Switch
               checked={currency === 'UF'}
@@ -142,8 +131,8 @@ export default function PricingSection() {
           animate="visible"
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
         >
-          {plansData.map((plan, index) => {
-            const isPremium = plan.id === 'premium';
+          {plansData.map((plan) => {
+            const isPro = plan.id === 'pro';
             const price = plan.pricing[billing][currency];
             const priceLabel = getPriceLabel(currency, billing);
             
@@ -151,17 +140,17 @@ export default function PricingSection() {
               <motion.div
                 key={plan.id}
                 variants={cardVariants}
-                className={`${isPremium ? 'lg:scale-105' : ''}`}
+                className={`${isPro ? 'lg:scale-105' : ''}`}
               >
-                <Card className={getCardStyles(plan.color, isPremium)}>
-                  {isPremium && (
-                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-green-500 to-green-600" />
+                <Card className={getCardStyles(plan.color, isPro)}>
+                  {isPro && (
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-blue-600" />
                   )}
                   
                   <CardHeader className="text-center pb-6">
                     <div className="flex items-center justify-center mb-4">
-                      {isPremium && (
-                        <Badge className="bg-green-100 text-green-800 border-green-200 mb-2">
+                      {isPro && (
+                        <Badge className="bg-blue-100 text-blue-800 border-blue-200 mb-2">
                           Más Popular
                         </Badge>
                       )}
@@ -218,7 +207,7 @@ export default function PricingSection() {
 
                     {/* CTA Button */}
                     <Button 
-                      className={`w-full h-12 text-base font-semibold transition-all duration-300 hover:scale-105 ${getButtonStyles(plan.color, isPremium)}`}
+                      className={`w-full h-12 text-base font-semibold transition-all duration-300 hover:scale-105 ${getButtonStyles(plan.color, isPro)}`}
                     >
                       Solicitar Demo
                       <ArrowRight className="ml-2 h-4 w-4" />
@@ -272,9 +261,12 @@ export default function PricingSection() {
           <p className="text-muted-foreground text-lg mb-4">
             ¿Necesitas un plan personalizado?
           </p>
-          <Button variant="outline" size="lg" className="border-primary/20 hover:bg-primary/5">
+          <Button 
+            size="lg" 
+            className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg shadow-blue-500/25 h-14 px-8 text-lg font-semibold transition-all duration-300 hover:scale-105"
+          >
             Contactar Ventas
-            <ArrowRight className="ml-2 h-4 w-4" />
+            <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         </motion.div>
       </div>

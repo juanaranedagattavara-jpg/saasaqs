@@ -1,234 +1,199 @@
-# 🚀 QSP SaaS - Dashboard de Comercio Exterior
+# QSP SpA - Static Export & Deployment Guide
 
-> Plataforma premium para análisis y reportes de comercio exterior con estética Bloomberg + Apple
+## 🚀 Build & Export
 
-## 📋 Descripción
+La aplicación está configurada para exportación estática con Next.js 15.5.2.
 
-QSP SaaS es una aplicación Next.js moderna que proporciona dashboards profesionales para empresas exportadoras e importadoras. Diseñada con estética premium y optimizada para performance, ofrece análisis en tiempo real de datos de comercio exterior.
-
-## ✨ Características
-
-- 🎨 **Diseño Premium**: Estética Bloomberg + Apple con dark mode
-- 📊 **Dashboards Interactivos**: KPIs, gráficos y tablas de tendencias
-- 📱 **Responsive**: Mobile-first design
-- ⚡ **Performance**: Lighthouse móvil ≥95
-- ♿ **Accesible**: Cumple estándares AA
-- 🔧 **TypeScript**: Código type-safe
-- 🎯 **SEO Optimizado**: Metadata completa
-
-## 🛠️ Stack Tecnológico
-
-- **Framework**: Next.js 15.5.2 (App Router)
-- **Lenguaje**: TypeScript (estricto)
-- **Estilos**: Tailwind CSS v4 + tokens personalizados
-- **UI**: shadcn/ui + componentes personalizados
-- **Gráficos**: Recharts
-- **Iconos**: Lucide React
-- **Animaciones**: Framer Motion
-- **SEO**: next-seo
-
-## 🚀 Inicio Rápido
-
-### Prerrequisitos
-
-- Node.js 18+ 
-- npm o yarn
-
-### Instalación
+### Comandos de Build
 
 ```bash
-# Clonar repositorio
-git clone <repository-url>
-cd qsp-saas
-
 # Instalar dependencias
 npm install
 
-# Ejecutar en desarrollo
-npm run dev
-```
-
-### Comandos Disponibles
-
-```bash
 # Desarrollo
-npm run dev          # Servidor de desarrollo
-npm run build        # Build de producción
-npm run start        # Servidor de producción
-npm run lint         # Linter ESLint
-npm run type-check   # Verificación TypeScript
-```
+npm run dev
 
-## 📁 Estructura del Proyecto
-
-```
-qsp-saas/
-├── 📁 app/                    # Next.js App Router
-│   ├── 📁 api/               # API endpoints
-│   ├── 📁 dashboard/         # Dashboard operativo
-│   ├── 📁 reportes/          # Sistema de reportes
-│   ├── 📄 layout.tsx         # Layout raíz
-│   └── 📄 page.tsx           # Landing page
-├── 📁 components/            # Componentes reutilizables
-│   ├── 📁 ui/               # shadcn/ui components
-│   ├── 📁 layout/           # ShellLayout, Navigation
-│   ├── 📁 dashboard/        # KpiCard, TrendChart, TopTable
-│   └── 📁 marketing/        # Hero, Features
-├── 📁 lib/                  # Utilidades y configuración
-│   ├── 📄 data.ts           # Datos mock
-│   └── 📄 utils.ts          # Utilidades generales
-├── 📁 types/                # Definiciones TypeScript
-└── 📁 public/               # Assets estáticos
-```
-
-## 🎨 Sistema de Diseño
-
-### Tokens de Color
-
-```css
---background: #0b0f14    /* Negro profundo */
---panel: #10161e         /* Gris oscuro */
---ink: #e9eef5           /* Texto principal */
---muted: #9fb1c4         /* Texto secundario */
---brand: #00c2b8         /* Cyan premium */
---accent: #d4a253        /* Dorado */
-```
-
-### Tipografía
-
-- **Font**: Inter (sistema)
-- **Weights**: 400, 500, 600, 700
-- **Sizes**: xs, sm, base, lg, xl, 2xl, 3xl, 4xl
-
-## 📊 Páginas y Funcionalidades
-
-### 🏠 Landing Page (`/`)
-- Hero section con CTA
-- Estadísticas clave
-- Diseño premium
-
-### 📈 Dashboard (`/dashboard`)
-- 4 KPIs principales
-- Gráfico de tendencias
-- Top productos exportados
-- Top países destino
-
-### 📋 Reportes (`/reportes`)
-- Lista de reportes
-- Formulario de creación
-- Estados de procesamiento
-- Descarga de archivos
-
-## 🔌 APIs
-
-### GET `/api/dashboard`
-Retorna datos del dashboard (KPIs, tendencias, rankings)
-
-### GET `/api/reportes`
-Lista todos los reportes disponibles
-
-### POST `/api/reportes`
-Crea un nuevo reporte
-
-## 📱 Responsive Design
-
-- **Mobile**: 320px+
-- **Tablet**: 768px+
-- **Desktop**: 1024px+
-- **Large**: 1280px+
-
-## ♿ Accesibilidad
-
-- ✅ Roles ARIA apropiados
-- ✅ Navegación por teclado
-- ✅ Contraste AA (4.5:1)
-- ✅ HTML semántico
-- ✅ Screen readers compatible
-
-## 🚀 Performance
-
-### Métricas Lighthouse (Estimadas)
-- **Performance**: 95+
-- **Accessibility**: 100
-- **Best Practices**: 100
-- **SEO**: 100
-
-### Optimizaciones
-- Dynamic imports para charts
-- Next.js Image optimization
-- Font optimization
-- CSS purging
-- Code splitting automático
-
-## 📦 Build y Deploy
-
-### Build de Producción
-```bash
+# Build para producción (genera archivos estáticos)
 npm run build
+
+# Export (opcional - ya incluido en build con output: "export")
+npm run export
 ```
 
-### Export Estático
-```bash
-# Configurar next.config.ts con output: 'export'
-npm run build
-# Archivos en carpeta 'out/'
+### Archivos Generados
+
+Después del build, los archivos estáticos se generan en:
+- `out/` - Directorio con todos los archivos estáticos listos para deploy
+
+## 🌐 Deployment Options
+
+### 1. Netlify (Recomendado)
+
+#### Opción A: Deploy desde Git
+1. Conecta tu repositorio GitHub/GitLab a Netlify
+2. Configuración automática:
+   - **Build command**: `npm run build`
+   - **Publish directory**: `out`
+   - **Node version**: `18` o superior
+
+#### Opción B: Deploy Manual
+1. Ejecuta `npm run build`
+2. Sube la carpeta `out/` completa a Netlify
+3. Configura redirects en `public/_redirects`:
+   ```
+   /*    /index.html   200
+   ```
+
+#### Configuración Netlify (`netlify.toml`)
+```toml
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[build.environment]
+  NODE_VERSION = "18"
 ```
 
-### Deploy en Vercel
+### 2. Vercel
+
+#### Deploy Automático
+1. Conecta repositorio a Vercel
+2. Vercel detecta automáticamente Next.js
+3. Configuración recomendada:
+   - **Framework Preset**: Next.js
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `out`
+   - **Install Command**: `npm install`
+
+#### Deploy Manual
 ```bash
+# Instalar Vercel CLI
+npm i -g vercel
+
+# Deploy
 vercel --prod
 ```
 
-## 🔄 Migración a WordPress
+### 3. Hostinger
 
-Ver [EXPORT_STATIC_WORDPRESS.md](./EXPORT_STATIC_WORDPRESS.md) para instrucciones detalladas de migración.
+#### Via File Manager
+1. Ejecuta `npm run build`
+2. Sube todo el contenido de `out/` al directorio `public_html`
+3. Configura `.htaccess` para SPA routing:
+   ```apache
+   RewriteEngine On
+   RewriteCond %{REQUEST_FILENAME} !-f
+   RewriteCond %{REQUEST_FILENAME} !-d
+   RewriteRule . /index.html [L]
+   ```
 
-## 📈 Roadmap
+#### Via FTP/SFTP
+1. Usa cliente FTP (FileZilla, WinSCP)
+2. Sube archivos de `out/` a `public_html/`
+3. Mantén estructura de carpetas
 
-### Fase 1 (Completada) ✅
-- [x] Landing page
-- [x] Dashboard básico
-- [x] Sistema de reportes
-- [x] APIs demo
+### 4. GitHub Pages
 
-### Fase 2 (Mes 2-3)
-- [ ] Integración APIs oficiales
-- [ ] Autenticación
-- [ ] Base de datos real
-- [ ] Reportes automáticos
+#### Configuración
+1. Crea archivo `.github/workflows/deploy.yml`:
+   ```yaml
+   name: Deploy to GitHub Pages
+   
+   on:
+     push:
+       branches: [ main ]
+   
+   jobs:
+     deploy:
+       runs-on: ubuntu-latest
+       steps:
+         - uses: actions/checkout@v3
+         - uses: actions/setup-node@v3
+           with:
+             node-version: '18'
+         - run: npm install
+         - run: npm run build
+         - uses: peaceiris/actions-gh-pages@v3
+           with:
+             github_token: ${{ secrets.GITHUB_TOKEN }}
+             publish_dir: ./out
+   ```
 
-### Fase 3 (Mes 4-6)
-- [ ] Marketplace datasets
-- [ ] White label
-- [ ] API Enterprise
-- [ ] Mobile app
+2. Habilita GitHub Pages en Settings > Pages
+3. Selecciona "GitHub Actions" como source
 
-## 🤝 Contribución
+## ⚙️ Configuración Técnica
 
-1. Fork el proyecto
-2. Crear feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit cambios (`git commit -m 'Add AmazingFeature'`)
-4. Push a branch (`git push origin feature/AmazingFeature`)
-5. Abrir Pull Request
+### Next.js Config
+```typescript
+// next.config.ts
+const nextConfig: NextConfig = {
+  output: "export",
+  trailingSlash: true,
+  images: {
+    unoptimized: true,
+  },
+};
+```
 
-## 📄 Licencia
+### Características del Build
+- ✅ **Static Export**: Genera archivos HTML estáticos
+- ✅ **Image Optimization**: Deshabilitada para compatibilidad
+- ✅ **Trailing Slash**: URLs con `/` al final
+- ✅ **SEO Ready**: Sitemap y robots.txt incluidos
+- ✅ **Performance**: Optimizado para carga rápida
 
-Este proyecto está bajo la Licencia MIT. Ver [LICENSE](LICENSE) para más detalles.
+## 📁 Estructura de Archivos
 
-## 📞 Contacto
+```
+out/
+├── index.html              # Página principal
+├── dashboard/
+│   └── index.html          # Dashboard
+├── planes/
+│   └── index.html          # Planes y precios
+├── reportes/
+│   └── index.html          # Reportes
+├── _next/                  # Assets optimizados
+├── robots.txt              # SEO
+├── sitemap.xml             # SEO
+└── og/                     # Open Graph images
+```
 
-- **Email**: contacto@qsp-saas.com
-- **Website**: https://qsp-saas.com
-- **LinkedIn**: [QSP SaaS](https://linkedin.com/company/qsp-saas)
+## 🔧 Troubleshooting
 
-## 🙏 Agradecimientos
+### Error: "export const dynamic not configured"
+- Asegúrate de agregar `export const dynamic = 'force-static';` en rutas API
 
-- [Next.js](https://nextjs.org/) - Framework React
-- [Tailwind CSS](https://tailwindcss.com/) - CSS framework
-- [shadcn/ui](https://ui.shadcn.com/) - Componentes UI
-- [Recharts](https://recharts.org/) - Gráficos React
-- [Lucide](https://lucide.dev/) - Iconos
+### Error: "Images not loading"
+- Verifica que `images.unoptimized: true` esté en next.config.ts
+
+### Error: "404 on refresh"
+- Configura redirects para SPA routing en tu hosting
+
+### Error: "Build fails"
+- Verifica que no hay rutas API dinámicas
+- Asegúrate de que todas las rutas tengan `dynamic = 'force-static'`
+
+## 🚀 Performance Tips
+
+1. **CDN**: Usa Cloudflare o similar para assets estáticos
+2. **Compression**: Habilita gzip/brotli en el servidor
+3. **Caching**: Configura headers de cache apropiados
+4. **Monitoring**: Usa Google Analytics o similar
+
+## 📞 Soporte
+
+Para problemas de deployment:
+1. Verifica logs del build
+2. Revisa configuración del hosting
+3. Confirma que todos los archivos se subieron correctamente
 
 ---
 
-**Desarrollado con ❤️ para empresas de comercio exterior**
+**¡Listo para deploy!** 🎉
